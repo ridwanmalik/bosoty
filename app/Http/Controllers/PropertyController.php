@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Property/Create');
     }
 
     /**
