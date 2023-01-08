@@ -15,20 +15,20 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('address');
-            $table->string('city');
-            $table->string('region');
-            $table->string('zip');
-            $table->string('country');
-            $table->string('description');
-            $table->string('image');
+            $table->string('name')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('region')->nullable();
+            $table->string('zip')->nullable();
+            $table->string('country')->nullable();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
             $table->enum('type', ['residential', 'commercial']);
             $table->enum('status', ['available', 'sold', 'rented', 'unavailable', 'booked', 'pending']);
             $table->integer('price');
-            $table->integer('bedrooms');
-            $table->integer('bathrooms');
-            $table->integer('area');
+            $table->integer('bedrooms')->nullable();
+            $table->integer('bathrooms')->nullable();
+            $table->integer('area')->nullable();
             $table->timestamps();
         });
     }
