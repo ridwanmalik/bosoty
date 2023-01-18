@@ -1,9 +1,16 @@
 import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
 import TextInput from "@/Components/TextInput";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
-import { Button, TextField, Typography } from "@mui/material";
+import {
+    Button,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    Typography,
+} from "@mui/material";
 
 const Create = (props) => {
     const { auth, errors: propsErrors } = props;
@@ -61,7 +68,7 @@ const Create = (props) => {
             }
         >
             <Head title="Create Property" />
-            <div className="container flex flex-col py-12">
+            <div className="container flex flex-col py-8">
                 <div className="grow">
                     {/* Create Property Form */}
                     <form onSubmit={createProperty}>
@@ -157,6 +164,113 @@ const Create = (props) => {
                             }
                             rows={2}
                         />
+                        <div className="mt-3 mb-5">
+                            <InputLabel htmlFor="image" className="mb-2">
+                                Upload Image
+                            </InputLabel>
+                            <input
+                                id="image"
+                                type="file"
+                                className="block w-full"
+                                name="image"
+                                onChange={(e) => {
+                                    console.log("===", e.target.files);
+                                    setData("image", e.target.files[0]);
+                                }}
+                            />
+                        </div>
+                        <InputError message={errors.image} className="mt-2" />
+                        <FormControl fullWidth className="mt-3">
+                            <InputLabel id="property-type-label">
+                                Property Type
+                            </InputLabel>
+                            <Select
+                                labelId="property-type-label"
+                                id="property-type"
+                                value={data.type}
+                                label="Property Type"
+                                onChange={(e) =>
+                                    setData("type", e.target.value)
+                                }
+                            >
+                                <MenuItem value="residential">
+                                    Residential
+                                </MenuItem>
+                                <MenuItem value="commercial">
+                                    Commercial
+                                </MenuItem>
+                            </Select>
+                        </FormControl>
+                        <div className="flex gap-3 mt-3">
+                            <TextField
+                                type="number"
+                                id="price"
+                                label="Price"
+                                variant="outlined"
+                                fullWidth
+                                value={data.price}
+                                onChange={(e) =>
+                                    setData("price", e.target.value)
+                                }
+                                margin="dense"
+                                helperText={errors.price ? errors.price : null}
+                            />
+                            <TextField
+                                type="number"
+                                id="area"
+                                label="Area"
+                                variant="outlined"
+                                fullWidth
+                                value={data.area}
+                                onChange={(e) =>
+                                    setData("area", e.target.value)
+                                }
+                                margin="dense"
+                                helperText={errors.area ? errors.area : null}
+                            />
+                        </div>
+                        <div className="flex gap-3 mt-3">
+                            <TextField
+                                type="number"
+                                id="bedrooms"
+                                label="Bedrooms"
+                                variant="outlined"
+                                fullWidth
+                                value={data.bedrooms}
+                                onChange={(e) =>
+                                    setData("bedrooms", e.target.value)
+                                }
+                                margin="dense"
+                                helperText={
+                                    errors.bedrooms ? errors.bedrooms : null
+                                }
+                            />
+                            <TextField
+                                type="number"
+                                id="bathrooms"
+                                label="Bathrooms"
+                                variant="outlined"
+                                fullWidth
+                                value={data.bathrooms}
+                                onChange={(e) =>
+                                    setData("bathrooms", e.target.value)
+                                }
+                                margin="dense"
+                                helperText={
+                                    errors.bathrooms ? errors.bathrooms : null
+                                }
+                            />
+                        </div>
+                        <div className="py-5">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className="mt-3"
+                                type="submit"
+                            >
+                                Submit
+                            </Button>
+                        </div>
                     </form>
                 </div>
             </div>

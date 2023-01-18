@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('image')->nullable();
             $table->enum('type', ['residential', 'commercial']);
-            $table->enum('status', ['available', 'sold', 'rented', 'unavailable', 'booked', 'pending']);
+            $table->enum('status', ['available', 'sold', 'rented', 'unavailable', 'booked', 'pending'])->default('available');
             $table->integer('price');
             $table->integer('bedrooms')->nullable();
             $table->integer('bathrooms')->nullable();

@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $properties = Property::paginate(10)->withQueryString();
+        $properties = Property::latest()->paginate(100)->withQueryString();
         return Inertia::render('Dashboard', [
             'properties' => $properties,
         ]);

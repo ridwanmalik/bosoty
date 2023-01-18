@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\PropertySeeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +17,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::create(
+            [
+                'name' => 'Bosoty Admin',
+                'email' => 'admin@bosoty.com',
+                'password' => Hash::make('#Bosoty$2023'),
+            ]
+        );
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

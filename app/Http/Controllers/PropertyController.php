@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PropertyController extends Controller
 {
@@ -36,7 +37,35 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'region' => 'required',
+            'zip' => 'required',
+            'country' => 'required',
+            'description' => 'required',
+            // 'image' => 'required',
+            'type' => 'required',
+            // 'status' => 'required',
+            'price' => 'required',
+            'bedrooms' => 'required',
+            'bathrooms' => 'required',
+            'area' => 'required',
+        ]);
+
+        $property = Property::create($request->all());
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $destinationPath = public_path('storage\properties');
+            $image->move($destinationPath, $name);
+            $property->image =  $destinationPath . '\\' . $name;
+            $property->save();
+        }
+
+        return Redirect::route('dashboard')->with('success', 'Property created successfully.');
     }
 
     /**

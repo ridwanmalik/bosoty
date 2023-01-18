@@ -13,8 +13,8 @@ export default function Dashboard(props) {
 
     console.log(`Log | file: Dashboard.jsx:9 | properties`, properties);
     const columns = [
-        { field: "name", headerName: "Name", width: 130 },
-        { field: "address", headerName: "Address", width: 130 },
+        { field: "name", headerName: "Name", width: 200 },
+        { field: "address", headerName: "Address", width: 300 },
         { field: "type", headerName: "Type", width: 130 },
         { field: "price", headerName: "Price", width: 130 },
         { field: "status", headerName: "Status", width: 130 },
